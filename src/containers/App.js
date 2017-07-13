@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as CounterActions from '../actions/CounterActions';
 import TimeSlot from '../components/TimeSlot'
+import ModalComp from '../components/Modal'
 // import Counter from '../components/Counter';
 // import Footer from '../components/Footer';
 
@@ -12,14 +13,22 @@ import TimeSlot from '../components/TimeSlot'
  * component to make the Redux store available to the rest of the app.
  */
 class App extends Component {
+  constructor(props){
+    super(props)
+  }
+
   render() {
     // we can use ES6's object destructuring to effectively 'unpack' our props
-    const { counter, actions, timeSlotCont } = this.props;
+    const {updateAppointment, updatePhone, saveModal, closeModal, timeSlotCont, shouldDisplayModal, onTimeClick, currentItemItem} = this.props;
     return (
       <div className="main-app-container">
+        <ModalComp shouldDisplayModal={shouldDisplayModal} time={currentItemItem} close={closeModal} save={saveModal}
+          updateAppointment={updateAppointment}
+          updatePhone = {updatePhone}
+        />
         {timeSlotCont.map((element, index) => {
           return(
-            <TimeSlot key={index} time={element.time} appointment={element.appointment} phone={element.phoen}/>
+            <TimeSlot key={index} time={element.time} appointment={element.appointment} phone={element.phone} onTimeClick={onTimeClick}/>
           )
         })}
       </div>
@@ -27,10 +36,6 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  counter: PropTypes.number.isRequired,
-  actions: PropTypes.object.isRequired
-};
 
 /**
  * Keep in mind that 'state' isn't the state of local object, but your single
@@ -39,8 +44,9 @@ App.propTypes = {
  */
 function mapStateToProps(state) {
   return {
-    counter: state.counter,
-    timeSlotCont: state.timeSlotReducer.timeSlotCont
+    timeSlotCont: state.timeSlotReducer.timeSlotCont,
+    currentItemItem: state.timeSlotReducer.currentItemItem,
+    shouldDisplayModal: state.timeSlotReducer.shouldDisplayModal,
   };
 }
 
@@ -52,9 +58,13 @@ function mapStateToProps(state) {
  *
  * More info: http://redux.js.org/docs/api/bindActionCreators.html
  */
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
   return {
-    actions: bindActionCreators(CounterActions, dispatch)
+    onTimeClick: (time) => dispatch({type: "CLICK", time: time}),
+    closeModal: () => dispatch({type: "CLOSE_MODAL"}),
+    saveModal: () => dispatch({type: "SAVE_MODAL"}),
+    updatePhone: (phone) => dispatch({type: "UPDATE_PHONE", phone: phone}),
+    updateAppointment: (appointment) => dispatch({type: "UPDATE_APPOINTMENT", appointment: appointment})
   };
 }
 

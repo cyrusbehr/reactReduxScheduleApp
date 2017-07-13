@@ -84,6 +84,12 @@ footer {
   width: 80px;
   text-align: center;
   padding-top: 30px;
+  background-color: #23AB82;
+  color: white;
+}
+
+.card-content{
+  color: #23AB82;
 }
 
 .card{
@@ -93,14 +99,28 @@ footer {
 span{
   font-size: 16px !important;
   position: relative;
-  top: -10px;
+  top: -7px;
   font-weight: bold;
 }
 p{
   position: relative;
-  top: -5px;
+  top: -20px;
 }
 .card-content{
   height: 80px;
   width: 400px;
+}
+h2{
+  font-size: 30px;
+  text-align: center;
+}
+.btn-container{
+  text-align: center;
+}
+#cancel-btn{
+  margin-top: 50px;
+  margin-right: 30px;
+}
+#save-btn{
+  margin-top: 50px;
 }
