@@ -30,7 +30,7 @@ const ModalComp = ({ time, appointment, shouldDisplayModal, close, save, updateP
 
   }
 }
-
+console.log('made it here')
 
   return (
 <div>
