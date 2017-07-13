@@ -1,3 +1,5 @@
+// TODO: get form to populate with information when updating
+
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
