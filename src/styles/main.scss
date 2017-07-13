@@ -78,3 +78,29 @@ footer {
     color: $accent-red;
   }
 }
+
+.card-image{
+  border-right: 1px solid #ddd;
+  width: 80px;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.card{
+  margin-bottom: 1px !important;
+  margin-top: 1px !important;
+}
+span{
+  font-size: 16px !important;
+  position: relative;
+  top: -10px;
+  font-weight: bold;
+}
+p{
+  position: relative;
+  top: -5px;
+}
+.card-content{
+  height: 80px;
+  width: 400px;
+}
